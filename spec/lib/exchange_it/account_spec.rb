@@ -15,8 +15,18 @@ RSpec.describe ExchangeIt::Account do
     expect(john.uid).to eq(hash)
   end
 
-  context 'when performing money wihtdrawal' do
+  context 'when performing money withdrawal' do
     before { john.deposit(100) }
+
+    specify '#transfer_with_conversion' do
+      allow(john).to receive(:convert).with(sum: 50, from: :usd, to: :eur).and_return(40)
+
+      john.transfer_with_conversion(ann, 50, :usd, :eur)
+
+      expect(john.balance).to eq(50)
+      expect(ann.balance).to eq(40)
+      expect(john).to have_received(:convert).once
+    end
 
     specify '#transfer' do
       expect(ann.balance).to eq(0)
@@ -25,6 +35,14 @@ RSpec.describe ExchangeIt::Account do
       expect(john.balance).to eq(70)
       expect(ann.balance).to eq(30)
     end
+
+    # specify '#transfer (mocked)' do
+    #   ann_mocked = instance_double('ExchangeIt::Account', balance: 30, deposit: 30)
+    #
+    #   john.transfer(ann_mocked, 30)
+    #   expect(john.balance).to eq(70)
+    #   expect(ann_mocked.balance).to eq(30)
+    # end
 
     describe '#deposit' do
       it 'allows to deposit correct sum' do
