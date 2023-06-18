@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.lokalise.com/api2/projects/1234515414514514523145
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - ruby-client
+      X-Api-Token:
+      - LOKALISE_API_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Sun, 18 Jun 2023 10:01:48 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Cache-Control:
+      - max-age=-172800, must-revalidate, no-cache, no-store, private
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=31536000
+      Referrer-Policy:
+      - origin
+      X-Lokalise-Process-Id:
+      - abd752ca-a1a7-4ee5-8232-bff9bd4d4a76
+      Expires:
+      - Fri, 16 Jun 2023 10:01:48 GMT
+    body:
+      encoding: UTF-8
+      string: '{"error":{"message":"Invalid `X-Api-Token` header","code":400}}'
+  recorded_at: Sun, 18 Jun 2023 10:01:48 GMT
+recorded_with: VCR 6.1.0
